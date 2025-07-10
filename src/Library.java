@@ -28,10 +28,12 @@ public class Library {
         else if(option == 3)
         {
             System.out.println("working on returning books");
-        }else if(option == 4)
+        }
+        else if(option == 4)
         {
             System.out.println("working on exiting");
-        }else
+        }
+        else
         {
             System.out.println("invalid option");
         }
