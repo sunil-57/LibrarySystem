@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Library {
@@ -27,8 +29,11 @@ public class Library {
             throw new RuntimeException(e);
         }
 
-
         User user1 = new User("Sunil", "sunil-57", 5566);
+
+
+
+
         //show available options: available books, borrow book, return book, exit
         System.out.println("Welcome to the Library");
         System.out.println("Enter 1: Show available books ");
@@ -38,7 +43,31 @@ public class Library {
         System.out.println("Choose an option: ");
         int option = input.nextInt();
         if(option == 1){
-            System.out.println("working on viewing available books");
+            System.out.println("Available books");
+            try {
+                Connection conn = DatabaseConnection.connect();
+                ArrayList<Book> bookList = new ArrayList<>();
+                String query = "SELECT booknumber,bookName, bookquantity,authorName FROM book";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ResultSet bookSet = ps.executeQuery();
+                while(bookSet.next()){
+//                    int bookNumber = bookSet.getInt("booknumber");
+//                    String bookName = bookSet.getString("bookname");
+//                    int bookQuantity = bookSet.getInt("bookquantity");
+//                    String authorName = bookSet.getString("authorName");
+                    Book book = new Book(
+                                    bookSet.getInt("booknumber"),
+                                    bookSet.getString("bookname"),
+                                    bookSet.getInt("bookquantity"),
+                                    bookSet.getString("authorName"));
+                    bookList.add(book);
+                }
+                for(Book book: bookList){
+                    System.out.println("Book Number: "+book.getBookNumber());
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }else if(option == 2)
         {
             System.out.println("working on borrowing books");
