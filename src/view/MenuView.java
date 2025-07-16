@@ -17,11 +17,29 @@ public class MenuView {
         System.out.println("Enter 6: Exit");
         System.out.println("Choose an option: ");
         int option = input.nextInt();
-        if(option == 1){
-            ViewController.getAddBookView();
-        }
-        else if(option == 2){
-            ViewController.getAvailableBooks();
+        while(true){
+            if(option > 0){
+                if(option == 1){
+                    ViewController.getAddBookView();
+                }
+                else if(option == 2){
+                    ViewController.getAvailableBooks();
+                }
+                else if(option == 3){
+                    ViewController.getBorrowBookView();
+                }
+                else if(option == 4){
+                    ViewController.getUpdateBookView();
+                }
+                else if(option == 5){
+                    ViewController.getDeleteBookView();
+                }
+                else {
+                    break;
+                }
+            }else {
+                System.out.println("Invalid Option, Please Enter 1 to 6... Thank you.");
+            }
         }
     }
 }

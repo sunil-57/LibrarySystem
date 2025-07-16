@@ -28,4 +28,37 @@ public class BookDAO {
         }
 
     }
+
+    public void updateBookDetail(int bookid, int bookNumber) {
+        try {
+                Connection conn = dao.DatabaseConnection.connect();
+                String query = "UPDATE book SET bookNumber = ? WHERE bookid = ?";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setInt(1,bookNumber);
+                ps.setInt(2, bookid);
+                if(ps.executeUpdate() > 0){
+                    System.out.println("book updated");
+                }else{
+                    System.out.println("Failed to update");
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+    }
+
+    public void deleteBookDetail(int bookid) {
+        try {
+            Connection conn = dao.DatabaseConnection.connect();
+            String query = "DELETE FROM book WHERE bookid = ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, bookid);
+            if (ps.executeUpdate() > 0) {
+                System.out.println("book deleted");
+            } else {
+                System.out.println("Failed to delete");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
