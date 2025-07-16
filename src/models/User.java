@@ -1,4 +1,6 @@
-public class User {
+package models;
+
+public class User{
     //attributes -> nam, username, contact
     private String name;
     private String username;
@@ -44,7 +46,7 @@ public class User {
             BookRecord record = new BookRecord(user, book);
             book.decreaseQuantity();
         }else{
-            System.out.println("Book not available");
+            System.out.println("models.Book not available");
         }
     }
     //TODO return a book

@@ -1,16 +1,17 @@
-public class Book {
+package models;
+
+public class Book{
     //attributes ->book number, nam, quantity, author
     private int bookNumber;
     private String bookName;
     private int bookQuantity;
     private String bookAuthor;
 
-    public Book(int bookNo, String bookNam, int bookQuant, String bookAu){
-        this.bookNumber = bookNo;
-        this.bookName = bookNam;
-        this.bookQuantity = bookQuant;
-        this.bookAuthor = bookAu;
-
+    public Book(int bookNumber, String bookName, int bookQuantity, String bookAuthor){
+        this.bookNumber = bookNumber;
+        this.bookName = bookName;
+        this.bookQuantity = bookQuantity;
+        this.bookAuthor = bookAuthor;
     }
     public int getBookNumber() {
         return bookNumber;
