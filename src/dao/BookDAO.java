@@ -64,19 +64,14 @@ public class BookDAO {
         }
     }
 
-    public void getBooks() {
-                    System.out.println("Available books");
+    public ArrayList<Book> getBooks() {
+        ArrayList<Book> bookList = new ArrayList<>();
             try {
                 Connection conn = dao.DatabaseConnection.connect();
-                ArrayList<Book> bookList = new ArrayList<>();
                 String query = "SELECT booknumber,bookName, bookquantity,authorName FROM book";
                 PreparedStatement ps = conn.prepareStatement(query);
                 ResultSet bookSet = ps.executeQuery();
                 while(bookSet.next()){
-//                    int bookNumber = bookSet.getInt("booknumber");
-//                    String bookName = bookSet.getString("bookname");
-//                    int bookQuantity = bookSet.getInt("bookquantity");
-//                    String authorName = bookSet.getString("authorName");
                     Book book = new Book(
                                     bookSet.getInt("booknumber"),
                                     bookSet.getString("bookname"),
@@ -84,9 +79,7 @@ public class BookDAO {
                                     bookSet.getString("authorName"));
                     bookList.add(book);
                 }
-                for(Book book: bookList){
-                    System.out.println("models.Book Number: "+book.getBookNumber());
-                }
+                return bookList;
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

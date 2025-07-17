@@ -3,6 +3,8 @@ package controller;
 import dao.BookDAO;
 import models.Book;
 
+import java.util.ArrayList;
+
 public class BookController {
 
     public void storeBook(Book book){
@@ -10,9 +12,9 @@ public class BookController {
         bookdao.insertBook(book);
     }
 
-    public void getBooks() {
+    public ArrayList<Book> getBooks() {
         BookDAO bookdao = new BookDAO();
-        bookdao.getBooks();
+        return bookdao.getBooks();
     }
 
     public void updateBook(int bookid, int bookNumber) {

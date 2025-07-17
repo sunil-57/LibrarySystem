@@ -15,10 +15,14 @@ public class MenuView {
         System.out.println("Enter 4: Update Book");
         System.out.println("Enter 5: Delete Book");
         System.out.println("Enter 6: Exit");
-        System.out.println("Choose an option: ");
-        int option = input.nextInt();
         while(true){
-            if(option > 0){
+            System.out.println("Choose an option: ");
+            int option = input.nextInt();
+            if(option < 0){
+                System.out.println("Enter a positive value, use the given options...");
+            }
+            else
+            {
                 if(option == 1){
                     ViewController.getAddBookView();
                 }
@@ -34,11 +38,12 @@ public class MenuView {
                 else if(option == 5){
                     ViewController.getDeleteBookView();
                 }
-                else {
+                else if(option == 6) {
                     break;
                 }
-            }else {
-                System.out.println("Invalid Option, Please Enter 1 to 6... Thank you.");
+                else{
+                    System.out.println("Choose a valid Option, Please Enter 1 to 6... Thank you. ");
+                }
             }
         }
     }

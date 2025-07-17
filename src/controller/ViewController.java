@@ -6,9 +6,10 @@ import view.DeleteBookView;
 import view.UpdateBookView;
 
 public class ViewController {
-    public static void getAddBookView(){
+    public static void getAddBookView() {
         AddBookView.showAddBookView();
     }
+
     public static void getAvailableBooks() {
         AvailableBooksView.showAvailableBooksView();
     }
