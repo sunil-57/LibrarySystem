@@ -4,7 +4,9 @@ import models.Book;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class BookDAO {
     public void insertBook(Book book){
@@ -60,5 +62,33 @@ public class BookDAO {
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void getBooks() {
+                    System.out.println("Available books");
+            try {
+                Connection conn = dao.DatabaseConnection.connect();
+                ArrayList<Book> bookList = new ArrayList<>();
+                String query = "SELECT booknumber,bookName, bookquantity,authorName FROM book";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ResultSet bookSet = ps.executeQuery();
+                while(bookSet.next()){
+//                    int bookNumber = bookSet.getInt("booknumber");
+//                    String bookName = bookSet.getString("bookname");
+//                    int bookQuantity = bookSet.getInt("bookquantity");
+//                    String authorName = bookSet.getString("authorName");
+                    Book book = new Book(
+                                    bookSet.getInt("booknumber"),
+                                    bookSet.getString("bookname"),
+                                    bookSet.getInt("bookquantity"),
+                                    bookSet.getString("authorName"));
+                    bookList.add(book);
+                }
+                for(Book book: bookList){
+                    System.out.println("models.Book Number: "+book.getBookNumber());
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
     }
 }

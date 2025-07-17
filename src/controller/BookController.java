@@ -11,7 +11,8 @@ public class BookController {
     }
 
     public void getBooks() {
-
+        BookDAO bookdao = new BookDAO();
+        bookdao.getBooks();
     }
 
     public void updateBook(int bookid, int bookNumber) {
