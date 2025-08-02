@@ -18,33 +18,32 @@ public class MenuView {
         while(true){
             System.out.println("Choose an option: ");
             int option = input.nextInt();
-            if(option < 0){
+            if (option < 0) {
                 System.out.println("Enter a positive value, use the given options...");
-            }
-            else
-            {
-                if(option == 1){
-                    ViewController.getAddBookView();
-                }
-                else if(option == 2){
-                    ViewController.getAvailableBooks();
-                }
-                else if(option == 3){
-                    ViewController.getBorrowBookView();
-                }
-                else if(option == 4){
-                    ViewController.getUpdateBookView();
-                }
-                else if(option == 5){
-                    ViewController.getDeleteBookView();
-                }
-                else if(option == 6) {
-                    break;
-                }
-                else{
-                    System.out.println("Choose a valid Option, Please Enter 1 to 6... Thank you. ");
+            } else {
+                switch (option) {
+                    case 1:
+                        ViewController.getAddBookView();
+                        break;
+                    case 2:
+                        ViewController.getAvailableBooks();
+                        break;
+                    case 3:
+                        ViewController.getBorrowBookView();
+                        break;
+                    case 4:
+                        ViewController.getUpdateBookView();
+                        break;
+                    case 5:
+                        ViewController.getDeleteBookView();
+                        break;
+                    case 6:
+                        break; // Exit
+                    default:
+                        System.out.println("Choose a valid Option, Please Enter 1 to 6... Thank you.");
                 }
             }
+
         }
     }
 }
