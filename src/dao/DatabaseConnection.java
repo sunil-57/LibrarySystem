@@ -6,10 +6,9 @@ import java.sql.SQLException;
 
 
 public class DatabaseConnection {
-    private static final String dbName = "librarydb";
-    private static final String path = "jdbc:mysql://localhost:3306/"+ dbName;
-    private static final String username = "root";
-    private static final String password = "";
+    private static final String path = System.getenv("DATABASE_URL");
+    private static final String username = System.getenv("DATABASE_USER");
+    private static final String password =System.getenv("DATABASE_PASSWORD");
 
     public static Connection connect() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
