@@ -15,8 +15,8 @@ public class BookController{
             throw new RuntimeException(e);
         }
     }
-    public void storeBook(Book book){
-        bookdao.insertBook(book);
+    public int storeBook(Book book){
+        return bookdao.insertBook(book);
     }
 
     public ArrayList<Book> getBooks() {

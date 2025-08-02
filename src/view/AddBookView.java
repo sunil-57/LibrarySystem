@@ -18,6 +18,10 @@ public class AddBookView {
         System.out.println("Enter quantity");
         int quantity = Integer.parseInt(input.nextLine());
         Book book = new Book(bookNumber,bookName, quantity,authorName);
-        bookcontroller.storeBook(book);
+        if (bookcontroller.storeBook(book) > 0) {
+            System.out.println("book added to database");
+        } else {
+            System.out.println("Failed to add");
+        }
     }
 }
