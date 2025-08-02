@@ -10,6 +10,10 @@ public class DeleteBookView {
         BookController bookController = new BookController();
         System.out.println("Enter the book id to delete: ");
         int bookid = input.nextInt();
-        bookController.deleteBook(bookid);
+        if (bookController.deleteBook(bookid) > 0) {
+            System.out.println("book deleted");
+        } else {
+            System.out.println("Failed to delete");
+        }
     }
 }

@@ -41,18 +41,14 @@ public class BookDAO {
         }
     }
 
-    public void deleteBookDetail(int bookid) {
+    public int deleteBookDetail(int bookid) {
         try {
             String query = "DELETE FROM book WHERE bookid = ?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, bookid);
-            if (ps.executeUpdate() > 0) {
-                System.out.println("book deleted");
-            } else {
-                System.out.println("Failed to delete");
-            }
+            return ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return -1;
         }
     }
 

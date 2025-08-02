@@ -27,7 +27,7 @@ public class BookController{
         return bookdao.updateBookDetail(bookid, bookNumber);
     }
 
-    public void deleteBook(int bookid) {
-        bookdao.deleteBookDetail(bookid);
+    public int deleteBook(int bookid) {
+       return bookdao.deleteBookDetail(bookid);
     }
 }
