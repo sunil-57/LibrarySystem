@@ -2,17 +2,28 @@ package models;
 
 public class Book{
     //attributes ->book number, nam, quantity, author
+    private int bookId;
     private int bookNumber;
     private String bookName;
     private int bookQuantity;
     private String bookAuthor;
 
+    public Book(){}
     public Book(int bookNumber, String bookName, int bookQuantity, String bookAuthor){
         this.bookNumber = bookNumber;
         this.bookName = bookName;
         this.bookQuantity = bookQuantity;
         this.bookAuthor = bookAuthor;
     }
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
     public int getBookNumber() {
         return bookNumber;
     }

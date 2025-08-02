@@ -11,7 +11,12 @@ public class AvailableBooksView {
         ArrayList<Book> bookList = bookController.getBooks();
         System.out.println("Available books");
         for(Book book: bookList){
-            System.out.println("Book Number: " + book.getBookNumber());
+            ;
+            System.out.println("Book id: " + book.getBookId()+ " | "+
+                               "Book Number: " + book.getBookNumber() + " | " +
+                    "Book Name: " + book.getBookName() + " | " +
+                    "Book Quantity: " + book.getBookQuantity()+ " | " +
+                    "Book Author: " + book.getBookAuthor()+ " | ");
         }
     }
 }

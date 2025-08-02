@@ -3,27 +3,31 @@ package controller;
 import dao.BookDAO;
 import models.Book;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BookController {
-
+public class BookController{
+    private BookDAO bookdao;
+    public BookController(){
+        try {
+            bookdao = new BookDAO();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void storeBook(Book book){
-        BookDAO bookdao = new BookDAO();
         bookdao.insertBook(book);
     }
 
     public ArrayList<Book> getBooks() {
-        BookDAO bookdao = new BookDAO();
         return bookdao.getBooks();
     }
 
     public void updateBook(int bookid, int bookNumber) {
-        BookDAO bookdao = new BookDAO();
         bookdao.updateBookDetail(bookid, bookNumber);
     }
 
     public void deleteBook(int bookid) {
-        BookDAO bookdao = new BookDAO();
         bookdao.deleteBookDetail(bookid);
     }
 }

@@ -9,9 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BookDAO {
+    private Connection conn;
+    public BookDAO() throws SQLException, ClassNotFoundException {
+        this.conn = DatabaseConnection.connect();
+    }
     public void insertBook(Book book){
         try {
-            Connection conn = dao.DatabaseConnection.connect();
             String query = "INSERT INTO book" +
                     "(bookNumber, bookName, authorName, bookquantity) " +
                     "VALUES (?,?,?,?)";
@@ -25,7 +28,7 @@ public class BookDAO {
             }else{
                 System.out.println("Failed to add");
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -33,7 +36,6 @@ public class BookDAO {
 
     public void updateBookDetail(int bookid, int bookNumber) {
         try {
-                Connection conn = dao.DatabaseConnection.connect();
                 String query = "UPDATE book SET bookNumber = ? WHERE bookid = ?";
                 PreparedStatement ps = conn.prepareStatement(query);
                 ps.setInt(1,bookNumber);
@@ -43,14 +45,13 @@ public class BookDAO {
                 }else{
                     System.out.println("Failed to update");
                 }
-            } catch (SQLException | ClassNotFoundException e) {
+            } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
     }
 
     public void deleteBookDetail(int bookid) {
         try {
-            Connection conn = dao.DatabaseConnection.connect();
             String query = "DELETE FROM book WHERE bookid = ?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, bookid);
@@ -59,7 +60,7 @@ public class BookDAO {
             } else {
                 System.out.println("Failed to delete");
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -68,15 +69,18 @@ public class BookDAO {
         ArrayList<Book> bookList = new ArrayList<>();
             try {
                 Connection conn = dao.DatabaseConnection.connect();
-                String query = "SELECT booknumber,bookName, bookquantity,authorName FROM book";
+                String query = "SELECT * FROM book";
                 PreparedStatement ps = conn.prepareStatement(query);
                 ResultSet bookSet = ps.executeQuery();
                 while(bookSet.next()){
-                    Book book = new Book(
-                                    bookSet.getInt("booknumber"),
-                                    bookSet.getString("bookname"),
-                                    bookSet.getInt("bookquantity"),
-                                    bookSet.getString("authorName"));
+                    Book book = new Book(); // empty object
+
+                    book.setBookid(bookSet.getInt("bookid"));
+                    book.setBookNumber(bookSet.getInt("booknumber"));
+                    book.setBookName(bookSet.getString("bookname"));
+                    book.setBookQuantity(bookSet.getInt("bookquantity"));
+                    book.setBookAuthor(bookSet.getString("authorName"));
+
                     bookList.add(book);
                 }
                 return bookList;
