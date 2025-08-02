@@ -4,6 +4,7 @@ import view.AddBookView;
 import view.AvailableBooksView;
 import view.DeleteBookView;
 import view.UpdateBookView;
+import view.ReturnBookView;
 
 public class ViewController {
     public static void getAddBookView() {
@@ -32,5 +33,9 @@ public class ViewController {
     public static void getDeleteBookView() {
         //TODO views while deleting a book
         DeleteBookView.showDeleteBookView();
+    }
+
+    public static void getReturnBookView() {
+        ReturnBookView.showReturnBookView();
     }
 }
