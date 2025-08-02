@@ -5,17 +5,18 @@ import controller.ViewController;
 import java.util.Scanner;
 
 public class MenuView {
-    public static void showMenuView(){
+    public static void showMenuView() {
         Scanner input = new Scanner(System.in);
         //show available options: available books, borrow book, return book, exit
-        System.out.println("Welcome to the Library");
-        System.out.println("Enter 1: Add a new Book ");
-        System.out.println("Enter 2: View Available Book");
-        System.out.println("Enter 3: Borrow Book");
-        System.out.println("Enter 4: Update Book");
-        System.out.println("Enter 5: Delete Book");
-        System.out.println("Enter 6: Exit");
-        while(true){
+        while (true) {
+            System.out.println("Welcome to the Library");
+            System.out.println("Enter 1: Add a new Book ");
+            System.out.println("Enter 2: View Available Book");
+            System.out.println("Enter 3: Borrow Book");
+            System.out.println("Enter 4: Return Book");
+            System.out.println("Enter 5: Update Book");
+            System.out.println("Enter 6: Delete Book");
+            System.out.println("Enter 7: Exit");
             System.out.println("Choose an option: ");
             int option = input.nextInt();
             if (option < 0) {
@@ -32,15 +33,18 @@ public class MenuView {
                         ViewController.getBorrowBookView();
                         break;
                     case 4:
-                        ViewController.getUpdateBookView();
+                        ViewController.getReturnBookView();
                         break;
                     case 5:
-                        ViewController.getDeleteBookView();
+                        ViewController.getUpdateBookView();
                         break;
                     case 6:
-                        break; // Exit
+                        ViewController.getDeleteBookView();
+                        break;
+                    case 7:
+                        break;
                     default:
-                        System.out.println("Choose a valid Option, Please Enter 1 to 6... Thank you.");
+                        System.out.println("Choose a valid Option, Please Enter 1 to 7... Thank you.");
                 }
             }
 
