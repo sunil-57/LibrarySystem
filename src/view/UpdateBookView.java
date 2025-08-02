@@ -12,6 +12,10 @@ public class UpdateBookView {
         int bookid = input.nextInt();
         System.out.println("Enter book Number: ");
         int bookNumber = input.nextInt();
-        bookController.updateBook(bookid, bookNumber);
+        if (bookController.updateBook(bookid, bookNumber) > 0) {
+            System.out.println("book updated");
+        } else {
+            System.out.println("Failed to update");
+        }
     }
 }

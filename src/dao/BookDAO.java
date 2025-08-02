@@ -29,19 +29,15 @@ public class BookDAO {
         }
     }
 
-    public void updateBookDetail(int bookid, int bookNumber) {
+    public int updateBookDetail(int bookid, int bookNumber) {
         try {
             String query = "UPDATE book SET bookNumber = ? WHERE bookid = ?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, bookNumber);
             ps.setInt(2, bookid);
-            if (ps.executeUpdate() > 0) {
-                System.out.println("book updated");
-            } else {
-                System.out.println("Failed to update");
-            }
+            return ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return -1;
         }
     }
 

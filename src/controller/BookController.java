@@ -23,8 +23,8 @@ public class BookController{
         return bookdao.getBooks();
     }
 
-    public void updateBook(int bookid, int bookNumber) {
-        bookdao.updateBookDetail(bookid, bookNumber);
+    public int updateBook(int bookid, int bookNumber) {
+        return bookdao.updateBookDetail(bookid, bookNumber);
     }
 
     public void deleteBook(int bookid) {
